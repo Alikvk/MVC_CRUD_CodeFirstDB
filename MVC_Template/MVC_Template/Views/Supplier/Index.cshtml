@@ -1,0 +1,90 @@
+﻿
+@using MVC_Template.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+@model List<Supplier>
+ @section head{
+     
+     <style>
+         .Error{
+             color:red;
+         }
+     </style>
+     }
+<div class="row">
+    <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="block-controls">
+
+                    <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                    <a href="/Supplier/AddSupplier" class="btn btn-success rounded">Tedarikçi Ekle</a>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+
+                                    <th>Şirket Adı</th>
+                                    <th>İlgili Kişi</th>
+                                    <th>Bağlantı Başlığı</th>
+                                    <th>Adres</th>
+                                    <th>Şehir</th>
+                                    <th>Bölge</th>
+                                    <th>Posta Kodu</th>
+                                    <th>Ülke</th>
+                                    <th>Telefon</th>
+                                    <th>Fax</th>
+                                    <th>Ana Sayfa</th>
+                                    <th>Güncelle</th>
+                                    <th>Sil</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Supplier spl in Model)
+                                {
+                                    <tr>
+                                        <td>@spl.CompanyName</td>
+                                        <td>@spl.ContactName</td>
+                                        <td>@spl.ContactTitle</td>
+                                        <td>@spl.Address</td>
+                                        <td>@spl.City</td>
+                                        <td>@spl.Region</td>
+                                        <td>@spl.PostalCode</td>
+                                        <td>@spl.Country</td>
+                                        <td>@spl.Phone</td>
+                                        <td>@spl.Fax</td>
+                                        <td style="display:flex;font-size:2px;">@spl.HomePage</td>
+                                        <td>
+                                            <a href="/Supplier/UpdateSupplier/@spl.SupplierID" type="submit" class="btn btn-primary rounded">Güncelle</a>
+                                        </td>
+                                        <td>
+                                            <a href="/Supplier/DeleteSupplier/@spl.SupplierID" type="submit" class="btn btn-danger rounded">Sil</a>
+                                        </td>
+                                        <td><a href="#" type="submit" onclick="DeleteData(@spl.SupplierID,'Supplier')" class="btn btn-danger rounded deleted-item">Ajax İle Sil</a></td>
+                                        <td>
+                                            <button class="btn btn-danger modalOpen" data-toggle="modal" data-target="#default-modal" data-supid="@spl.SupplierID" data-supname="@spl.CompanyName">
+                                                Modal Sil
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

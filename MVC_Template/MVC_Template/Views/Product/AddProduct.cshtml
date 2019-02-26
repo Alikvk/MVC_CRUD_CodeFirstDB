@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Ekle";
+}
+@using MVC_Template.Models
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="block">
+        <div class="block-heading">
+            <div class="main-text h2">
+                Ürün Ekleme
+            </div>
+           
+            <div class="block-controls">
+                <div class="active-buttons">
+
+                </div>
+                <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+                <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+            </div>
+        </div>
+        <div class="block-content-outer">
+            <div class="block-content-inner">
+                <form role="form" action="/Product/AddProduct" method="post">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ürün Adı</label>
+                        <input type="text" class="form-control" id="ProductName" name="ProductName">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Fiyat</label>
+                        <input type="number" class="form-control" id="UnitPrice" name="UnitPrice">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Stok</label>
+                        <input type="number" class="form-control" id="UnitsInStock" name="UnitsInStock">
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="SupplierID">Tedarikçi</label>
+                        <select class="form-control" name="SupplierID">
+                            @foreach (Supplier item in ViewBag.Suppliers)
+                            {
+                                <option value="@item.SupplierID">@item.CompanyName</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Kategoriler</label>
+                        <select class="form-control" name="CategoryID">
+                            @foreach (Category item in ViewBag.Categories)
+                            {
+                                <option value="@item.CategoryID">@item.CategoryName</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="checkbox" >
+                        <label>
+                            <input type="checkbox" name="Discontinued"  value="true"> Status
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
